@@ -1,0 +1,72 @@
+import java.util.Scanner;
+
+/**
+ * 
+ * @author balajim
+ *
+ */
+public class SumOfPrimes {
+	public static void main(String[] args) {
+		boolean flag=true;
+		while(flag) {
+			System.out.println("Enter the number");
+			Scanner scanner=new Scanner(System.in);
+			if(scanner.hasNextInt()) {
+				int num=scanner.nextInt();
+				//System.out.println(sum(num));
+				System.out.println(isPrime(num));
+			}
+			else {
+				System.out.println("Enter only number");
+			}
+		}
+	}
+	public static int sum(int num) {
+		int sum=0;
+		for(int i:seperateDigits(num)) {
+			if(isPrime(i)) {
+				sum=sum+i;
+			}
+		}
+		return sum;
+	}
+	public static int[] seperateDigits(int num) {
+		int[] digits=new int[countDigits(num)];
+		int index=digits.length;
+		while(num>0) {
+			int digit=num%10;
+			digits[--index]=digit;
+			num=num/10;
+		}
+		return digits;
+	}
+	public static int countDigits(int num) {
+		int count=0;
+		while(num>0) {
+			int temp=num%10;
+			num=num/10;
+			count++;
+		}
+		return count;
+	}
+	public static boolean isPrime(int num) {
+		boolean flag=true;
+		if(validatePrime(num)) {
+			if(num==2 || num==3)
+				return true;
+			for(int i=2;i<=(num/2); i++) {
+				if(num%i==0) {
+					flag=false;
+					break;
+				}
+			}
+			return flag;
+		}
+		else {
+			return false;
+		}
+	}
+	public static boolean validatePrime(int num) {
+		return num>1;
+	}
+}
