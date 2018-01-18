@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+/**
+ * 
+ */
+
+/**
+ * @author balajim
+ *
+ */
+public class Weightage {
+	public static void main(String[] args) {
+		boolean flag=true;
+		while(flag) {
+			System.out.println("Enter the number");
+			Scanner sc=new Scanner(System.in);
+			if(sc.hasNextInt()) {
+				int num=sc.nextInt();
+				System.out.println("number : "+num+", weight : "+calculateWeight(num));
+				flag=false;
+			}
+			else {
+				System.out.println("Emter only numbers.");
+				flag=true;
+			}
+		}
+
+	}
+	public static int calculateWeight(int num) {
+		int weight=0;
+		if(isPerfectSquare(num))
+			weight=weight+5;
+		if(divisibleBy6AndMultiplyBy4(num))
+			weight=weight+4;
+		if(isEven(num))
+			weight=weight+3;
+		return weight;
+	}
+	public static boolean isPerfectSquare(int num) {
+		int root=(int) Math.sqrt(num);
+		return ((root)*(root)==num);
+	}
+
+	public static boolean divisibleBy6AndMultiplyBy4(int num) {
+		return ((num%4==0) && (num%6)==0);	
+	}
+
+	public static boolean isEven(int num) {
+		return ((num&1)==0);
+	}
+
+}
