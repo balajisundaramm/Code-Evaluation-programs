@@ -1,0 +1,58 @@
+
+public class BinarySearchInMatrix {
+	public static void main(String[] args) {
+		System.out.println("Main");
+		int[][] matrix= { {1,2,4},{5,7,8},{10,12,14}};
+		int key=5;
+		int elements=3;
+		int result=countElements(matrix, elements, key);
+		System.out.println(result);
+		System.out.println("ended");
+	}
+	// function returns the row index no of largest element
+	// smaller than equal to 'x' in first column of mat[][].
+	// For duplicates it returns the last row index no of
+	// occurrence of required element 'x'. If no such element
+	// exits then it returns -1.
+	public static int searchRow(int[][] matrix,int start, int end, int key) {
+		System.out.println("row starts");
+		int mid=(start+end)/2;
+		while(start<=end) {
+			if(matrix[mid][0]<=key) {
+				start=mid+1;
+			}
+			else {
+				end=mid-1;
+			}
+		}
+		System.out.println("row ends");
+		return end;
+	}
+
+	public static int searchColumn(int[][] matrix,int start, int end, int row, int key) {
+		System.out.println("search column");
+		int mid=(start+end)/2;
+		while(start<=end) {
+			if(matrix[row][0]<=key) {
+				start=mid+1;
+			}
+			else {
+				end=mid-1;
+			}
+		}
+		System.out.println("column ends");
+		return end;
+	}
+	public static int countElements(int matrix[][], int rowElements, int key) {
+		System.out.println("count starts");
+		int rowNo=searchRow(matrix, 0, rowElements-1, key);
+		if(rowNo==-1) {
+			System.out.println("count ends");
+			return 0;
+		}
+		int colNo=searchColumn(matrix, 0, rowElements-1, rowNo, key);
+		System.out.println("count ends");
+
+		return ((rowNo*rowElements)+(colNo+1));
+	}
+}
